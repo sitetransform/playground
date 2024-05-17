@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Runner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://sitetransform.github.io/sitetransform.css/dist/sitetransform.min.css">
+</head>
+
+<body>
+    <div id="editor-container">
+        <div id="editor-html" class="editor"></div>
+        <div id="editor-css" class="editor"></div>
+        <div id="editor-js" class="editor"></div>
+    </div>
+    <button onclick="runCode()">Run</button>
+    <a href="javascript:openwindow()">Run in new window</a>
+    <iframe id="output"></iframe>
+    <input type="checkbox" checked id="usesitetransform">
+    <label for="usesitetransform" class="label-inline">Use Sitetransform.css</label>
+
+    <!-- Load Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/loader.min.js"></script>
+    <script>
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            window.htmlEditor = monaco.editor.create(document.getElementById('editor-html'), {
+                value: '<!-- Write HTML here -->',
+                language: 'html',
+                theme: 'vs-dark'
+            });
+
+            window.cssEditor = monaco.editor.create(document.getElementById('editor-css'), {
+                value: '/* Write CSS here */',
+                language: 'css',
+                theme: 'vs-dark'
+            });
+
+            window.jsEditor = monaco.editor.create(document.getElementById('editor-js'), {
+                value: '// Write JavaScript here',
+                language: 'javascript',
+                theme: 'vs-dark'
+            });
+        });
+
+    </script>
+    <script src="index.js"></script>
+</body>
+
+</html>
